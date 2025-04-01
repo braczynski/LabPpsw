@@ -1,0 +1,49 @@
+*łańcuchy 
+int main(void) {
+    //TEST COPYSTRING
+    char cSource[6] = "grzyb";
+    char cDestination[8] = "ek";
+
+    //TEST COMPRESULT
+    char comparesource1[11] = "podgrzybek";
+    char comparesource2[11] = "podgrzybek";
+
+    //TEST APPENDSTRING
+    char acSource[14] = "Jak sie masz?";
+    char acDestination[30] = "Czesc";
+
+    //TEST REPLACE
+    char source[8] = "Kapitan";
+    char oldchar = 'a';
+    char newchar = 'g';
+
+    CopyString(cSource, cDestination);
+    eCompareString(comparesource1, comparesource2;
+    AppendString(acSource, acDestination);
+    ReplaceCharactersInString(source, oldchar, newchar);
+    return 0;
+}
+*konewrsja
+int main(void) {
+
+    //TEST1
+    char cAfterConverion[7];
+
+    UIntToHexStr(38476, cAfterConverion);
+
+
+    //TEST2
+    enum Result iReturnResult;
+    unsigned int uiReturnValue;
+
+    iReturnResult = eHexStringToUInt("0xB9A", &uiReturnValue);
+
+
+    //TEST3
+    char cOryginal[15] = "test1";
+
+    AppendUIntToString(38476,cOryginal);
+
+
+    return 0;
+}
