@@ -11,11 +11,39 @@ void Delay(unsigned int uiTimeMs) {
 	}
 }
 
+enum LedState{LED_LEFT, LED_RIGHT};
+
 int main(){
 	
-	Delay(500);
-	LedStepRight();
-	Delay(500);
-	LedStepLeft();
-	return 0;
+	enum LedState eLedState = LED_LEFT;
+	unsigned char ucShiftCounter = 0;
+	LedInit();
+	
+	while(1) {
+	
+		switch(eLedState) {
+		
+			case LED_LEFT:
+				LedStepLeft();
+			
+				if(ucShiftCounter == 2) {
+					
+					eLedState = LED_RIGHT;
+				}
+			break;
+		
+			case LED_RIGHT:
+				LedStepRight();
+			
+				if(ucShiftCounter == 5) {
+					
+					eLedState = LED_LEFT;
+					ucShiftCounter = 0;
+				}
+			break;
+		}
+		
+		ucShiftCounter++;
+		Delay(250);
+	}
 }
