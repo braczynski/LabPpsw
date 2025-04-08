@@ -11,39 +11,42 @@ void Delay(unsigned int uiTimeMs) {
 	}
 }
 
-enum LedState{LED_LEFT, LED_RIGHT};
+enum LedState{STOP, LED_RIGHT};
 
 int main(){
 	
-	enum LedState eLedState = LED_LEFT;
+	enum LedState eLedState = STOP;
 	unsigned char ucShiftCounter = 0;
+	
 	LedInit();
+	KeyboardInit();
 	
 	while(1) {
 	
 		switch(eLedState) {
 		
-			case LED_LEFT:
-				LedStepLeft();
-			
-				if(ucShiftCounter == 2) {
-					
-					eLedState = LED_RIGHT;
+			case STOP:
+				if( eKeyboardRead() == BUTTON_0) {
+					 eLedState = LED_RIGHT;
+				} else {
+					eLedState = STOP;
 				}
 			break;
 		
 			case LED_RIGHT:
 				LedStepRight();
 			
-				if(ucShiftCounter == 5) {
+				if(ucShiftCounter == 3) {
 					
-					eLedState = LED_LEFT;
+					eLedState = STOP;
 					ucShiftCounter = 0;
+				} else {
+					eLedState = LED_RIGHT;
 				}
+				ucShiftCounter++;
 			break;
 		}
 		
-		ucShiftCounter++;
-		Delay(250);
+		Delay(500);
 	}
 }
