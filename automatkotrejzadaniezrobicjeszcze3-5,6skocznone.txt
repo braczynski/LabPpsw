@@ -7,15 +7,16 @@ void Delay(unsigned int uiTimeMs) {
 	unsigned int uiCounter;
 	
 	for(uiCounter = 0; uiCounter < (MilS*uiTimeMs); uiCounter++) {
-		// Petla opózniajaca
+		// Petla opÃ³zniajaca
 	}
 }
 
-enum LedState{STOP, LED_LEFT, LED_RIGHT};
+enum LedState{STOP, LED_RIGHT};
 
 int main(){
 	
 	enum LedState eLedState = STOP;
+	unsigned char ucShiftCounter = 0;
 	
 	LedInit();
 	KeyboardInit();
@@ -26,40 +27,26 @@ int main(){
 		
 			case STOP:
 				if( eKeyboardRead() == BUTTON_0) {
-					
-					eLedState = LED_LEFT;
-				} else if(eKeyboardRead() == BUTTON_2){
-					
-					eLedState = LED_RIGHT;
+					 eLedState = LED_RIGHT;
 				} else {
-					
 					eLedState = STOP;
-				}
-			break;
-				
-			case LED_LEFT:
-				LedStepLeft();
-				
-				if( eKeyboardRead() == BUTTON_1) {
-					 eLedState = STOP;
-				} else {
-					
-					eLedState = LED_LEFT;
 				}
 			break;
 		
 			case LED_RIGHT:
 				LedStepRight();
-				
-				if( eKeyboardRead() == BUTTON_1) {
-					 eLedState = STOP;
-				} else {
+			
+				if(ucShiftCounter == 3) {
 					
+					eLedState = STOP;
+					ucShiftCounter = 0;
+				} else {
 					eLedState = LED_RIGHT;
 				}
+				ucShiftCounter++;
 			break;
 		}
 		
-		Delay(100);
+		Delay(500);
 	}
 }

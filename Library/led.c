@@ -6,32 +6,26 @@
 #define LED2_bm (1<<18)
 #define LED3_bm (1<<19)
 
-void LedInit(void) {
+void LedInit() {
 	
-	IO1DIR |= (LED0_bm + LED1_bm + LED2_bm + LED3_bm);
+	IO1DIR |= (LED0_bm | LED1_bm | LED2_bm | LED3_bm);
 }
 
 void LedOn(unsigned char ucLedIndeks) {
+		IO1CLR = (LED0_bm | LED1_bm | LED2_bm | LED3_bm);
 	
 		switch (ucLedIndeks) {
 			case 0:
 				IO1SET = LED0_bm;
-				IO1CLR = (LED1_bm + LED2_bm + LED3_bm);
 				break;
 			case 1:
 				IO1SET = LED1_bm;
-				IO1CLR = (LED0_bm + LED2_bm + LED3_bm);
 				break;
 			case 2:
 				IO1SET = LED2_bm;
-				IO1CLR = (LED0_bm + LED1_bm + LED3_bm);
 				break;
 			case 3:
 				IO1SET = LED3_bm;
-				IO1CLR = (LED0_bm + LED1_bm + LED2_bm );
-				break;
-			default:
-				IO1CLR = (LED0_bm + LED1_bm + LED2_bm + LED3_bm);
 				break;
 		}
 }
@@ -40,15 +34,15 @@ enum Side{LEFT, RIGHT};
 
 void eStep(enum Side side) {
 	
-	static unsigned int uiCurrentDiode = 0;
+	static unsigned char ucCurrentDiode = 0;
 
 	if(side == LEFT) {
-		LedOn(uiCurrentDiode%4);
+		ucCurrentDiode++;
 	} else {
-		LedOn(3 - (uiCurrentDiode%4));
+		ucCurrentDiode--;
 	}
-	
-	uiCurrentDiode++;
+		
+	LedOn(ucCurrentDiode%4);
 }
 
 void LedStepLeft(void) {
