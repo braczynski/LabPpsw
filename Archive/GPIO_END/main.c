@@ -22,28 +22,28 @@ void Delay(unsigned int uiTimeMs) {
 
 void LedInit() {
 	
-	IO1DIR |= (LED0_bm + LED1_bm + LED2_bm + LED3_bm);
+	IO1DIR |= (LED0_bm | LED1_bm | LED2_bm | LED3_bm);
 }
 
 void KeyboardInit() {
 	
-	IO0DIR &= ~(S0_bm + S1_bm + S2_bm + S3_bm);
+	IO0DIR &= ~(S0_bm | S1_bm | S2_bm | S3_bm);
 }
 
 enum KeyboardState {RELASED, BUTTON_0, BUTTON_1, BUTTON_2, BUTTON_3};
 
 enum KeyboardState eKeyboardRead() {
 	
-		if((IO0PIN & S0_bm) == 0) {
+		if((IO0PIN & S0_bm) == 0) {// PRESSED: 0x10 RELASED: 0
 			
 			return BUTTON_0;
-		} else if ((IO0PIN & S1_bm) == 0) {
+		} else if ((IO0PIN & S1_bm) == 0) { //PRESSED: 0x40 RELASED: 0
 			
 			return BUTTON_1;
-		} else if((IO0PIN & S2_bm) == 0) {
+		} else if((IO0PIN & S2_bm) == 0) { //PRESSED: 0x20 RELASED: 0
 			
 			return BUTTON_2;
-		} else if((IO0PIN & S3_bm) == 0) {
+		} else if((IO0PIN & S3_bm) == 0) { //PRESSED: 0x80 RELASED: 0 
 			
 			return BUTTON_3;
 		}else {
@@ -53,26 +53,20 @@ enum KeyboardState eKeyboardRead() {
 }
 
 void LedOn(unsigned char ucLedIndeks) {
+		IO1CLR = (LED0_bm | LED1_bm | LED2_bm | LED3_bm);
 	
 		switch (ucLedIndeks) {
 			case 0:
 				IO1SET = LED0_bm;
-				IO1CLR = (LED1_bm + LED2_bm + LED3_bm);
 				break;
 			case 1:
 				IO1SET = LED1_bm;
-				IO1CLR = (LED0_bm + LED2_bm + LED3_bm);
 				break;
 			case 2:
 				IO1SET = LED2_bm;
-				IO1CLR = (LED0_bm + LED1_bm + LED3_bm);
 				break;
 			case 3:
 				IO1SET = LED3_bm;
-				IO1CLR = (LED0_bm + LED1_bm + LED2_bm );
-				break;
-			default:
-				IO1CLR = (LED0_bm + LED1_bm + LED2_bm + LED3_bm);
 				break;
 		}
 }
@@ -81,15 +75,15 @@ enum Side{LEFT, RIGHT};
 
 void eStep(enum Side side) {
 	
-	static unsigned int uiCurrentDiode = 0;
+	static unsigned char ucCurrentDiode = 0;
 
 	if(side == LEFT) {
-		LedOn(uiCurrentDiode%4);
+		ucCurrentDiode++;
 	} else {
-		LedOn(3 - (uiCurrentDiode%4));
+		ucCurrentDiode--;
 	}
-	
-	uiCurrentDiode++;
+		
+	LedOn(ucCurrentDiode%4);
 }
 
 void LedStepLeft(void) {
@@ -103,9 +97,7 @@ void LedStepRight(void) {
 }
 
 
-int main() {
-	
-	unsigned char ucStepCounter = 1;
+int main() {;
 
 	LedInit();
 	KeyboardInit();
@@ -115,14 +107,17 @@ int main() {
 		
 		Delay(50);
 		
-		if (ucStepCounter <= 9) {
+		switch (eKeyboardRead()) {
+			case BUTTON_1:
 				LedStepRight();
-		} else if (ucStepCounter <= 18) {
+				break;
+			case BUTTON_2:
 				LedStepLeft();
-		} else {
-			ucStepCounter = 1;
+				break;
+			default:
+				break;
 		}
-		ucStepCounter++;
+		
 		Delay(50);
 	}
 }

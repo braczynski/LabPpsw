@@ -11,9 +11,7 @@ void Delay(unsigned int uiTimeMs) {
 	}
 }
 
-int main() {
-	
-	unsigned char ucStepCounter = 1;
+int main() {;
 
 	LedInit();
 	KeyboardInit();
@@ -23,14 +21,17 @@ int main() {
 		
 		Delay(50);
 		
-		if (ucStepCounter <= 9) {
+		switch (eKeyboardRead()) {
+			case BUTTON_1:
 				LedStepRight();
-		} else if (ucStepCounter <= 18) {
+				break;
+			case BUTTON_2:
 				LedStepLeft();
-		} else {
-			ucStepCounter = 1;
+				break;
+			default:
+				break;
 		}
-		ucStepCounter++;
+		
 		Delay(50);
 	}
 }
