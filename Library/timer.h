@@ -3,6 +3,8 @@
 
 void WaitOnTimer0(unsigned int uiTime);
 
-void WaitOnTimer0Match0(unsigned int iDelayTime);
+void InitTimer0Match0(unsigned int uiDelayTime);
+
+void WaitOnTimer0Match0(void);
 
 #endif

@@ -9,6 +9,7 @@ int main(){
 	
 	while(1) {
 		LedStepLeft();
-		WaitOnTimer0Match0(500);
+		InitTimer0Match0(500000);
+		WaitOnTimer0Match0();
 	}
 }

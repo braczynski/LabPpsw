@@ -1,10 +1,6 @@
 #ifndef LED_H
 #define LED_H
 
-void LedInit(void);
-
-void LedStepLeft(void);
-
-void LedStepRight(void);
+void Timer0Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)(void));
 
 #endif
