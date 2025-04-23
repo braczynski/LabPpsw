@@ -422,6 +422,11 @@
               <FileType>1</FileType>
               <FilePath>..\Library\timer_interrupts.c</FilePath>
             </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

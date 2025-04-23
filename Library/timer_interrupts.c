@@ -1,5 +1,5 @@
 #include <LPC21xx.H>
-#include "../Library/led.h"
+#include "led.h"
 #include "timer_interrupts.h"
 
 // TIMER

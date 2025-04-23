@@ -16,7 +16,6 @@ void WaitOnTimer0(unsigned int uiTime) {
 	
 	T0TCR |= COUNTER_RESET; // resetuje timer
 	T0TC &= (~COUNTER_RESET); // zerowanie flagi resetu
-	InitTimer0(); // uruchamia timer
 	
 	while((uiTime*15) >= T0TC) { //czekam az rejestr TC osiagnie zadana wartosc
 		
@@ -28,7 +27,7 @@ void InitTimer0Match0(unsigned int uiDelayTime) {
 	
 	T0MR0 = (uiDelayTime*15); // Wpisujemy do T0MR0 zadana wartosc taktow (ile ma czekac)
 	
-	T0MCR |= (RESET_ON_MR0|INTERRUPT_ON_MR0); // ustawiam timer by zglosil przerwanie gdy rejestr  TC=T0MCR i ustawiam timer by zresetowac rejestr TC gdy rejestr TC=TOMR0  
+	T0MCR |= (RESET_ON_MR0|INTERRUPT_ON_MR0); // ustawiam timer by zglosil przerwanie gdy rejestr TC=T0MR0 i ustawiam timer by zresetowal rejestr TC gdy rejestr TC=T0MR0  
 	
 	T0TCR |= COUNTER_RESET; // resetuje timer
 	T0TC &= (~COUNTER_RESET); // zerowanie flagi resetu
