@@ -1,6 +1,12 @@
 #ifndef LED_H
 #define LED_H
 
-void Timer0Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)(void));
+void LedOn(unsigned char ucLedIndeks);
+
+void LedInit(void);
+
+void LedStepLeft(void);
+
+void LedStepRight(void);
 
 #endif
