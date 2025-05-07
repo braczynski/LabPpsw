@@ -1,0 +1,11 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\main.o"
+".\keyboard.o"
+".\timer.o"
+".\timer_interrupts.o"
+".\led.o"
+--strict --scatter ".\interupt.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\interupt.map" -o .\interupt.axf

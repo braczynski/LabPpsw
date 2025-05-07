@@ -17,7 +17,7 @@ void WaitOnTimer0(unsigned int uiTime) {
 	T0TCR |= COUNTER_RESET; // resetuje timer
 	T0TC &= (~COUNTER_RESET); // zerowanie flagi resetu
 	
-	while((uiTime*15) != T0TC) { //czekam az rejestr TC osiagnie zadana wartosc
+	while((uiTime*15) >= T0TC) { //czekam az rejestr TC osiagnie zadana wartosc
 		
 	}
 	
