@@ -4,9 +4,12 @@
 #include "../library/servo.h"
 #include "uart.h"
 
+extern char cOdebranyZnak;
+
 int main(){
 	
 	unsigned int iMainLoopCtr;
+	unsigned int uiSerwoDegree = 0;
 	
 	KeyboardInit();
 	DetectorInit();
@@ -34,6 +37,36 @@ int main(){
 			break;
 			
 			case BUTTON_3:
+				
+				ServoGoTo(36);
+			break;
+			
+			default:
+				
+				
+			break;
+		
+		}
+		
+			switch(cOdebranyZnak) {
+		
+			case 'c':
+			
+				ServoCallib();
+			break;
+				
+			case '1':
+				
+				uiSerwoDegree += 12;
+				ServoGoTo(uiSerwoDegree);
+			break;
+			
+			case '2':
+				
+				ServoGoTo(24);
+			break;
+			
+			case '3':
 				
 				ServoGoTo(36);
 			break;

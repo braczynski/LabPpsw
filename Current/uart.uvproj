@@ -397,6 +397,41 @@
               <FileType>2</FileType>
               <FilePath>.\Startup.s</FilePath>
             </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>keyboard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\keyboard.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer_interrupts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\timer_interrupts.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Library\led.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
