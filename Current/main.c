@@ -52,22 +52,26 @@ int main(){
 		
 			case 'c':
 			
+				uiSerwoDegree = 0;
 				ServoCallib();
 			break;
 				
 			case '1':
-				
+					
 				uiSerwoDegree += 12;
+				
 				ServoGoTo(uiSerwoDegree);
 			break;
 			
 			case '2':
 				
+				uiSerwoDegree = 24;
 				ServoGoTo(24);
 			break;
 			
 			case '3':
 				
+				uiSerwoDegree = 36;
 				ServoGoTo(36);
 			break;
 			
@@ -77,6 +81,8 @@ int main(){
 			break;
 		
 		}
+		
+		cOdebranyZnak = 0; 
 		iMainLoopCtr++;
 	}
 }
