@@ -2,15 +2,14 @@
 #include "../Library/keyboard.h"
 #include "../Library/timer_interrupts.h"
 #include "../library/servo.h"
-#include "string.h"
-#include "command_decoder.h"
+#include "../library/lancuchy_PO.h"
 
 #define TERMINATOR '\0'
 
 int main(){
 	
 	unsigned int iMainLoopCtr;
-	char cString[RECIEVER_SIZE];
+	char cString[20];
 	
 	KeyboardInit();
 	DetectorInit();
@@ -53,23 +52,15 @@ int main(){
 			
 			Reciever_GetStringCopy(cString);
 			
-			DecodeMsg(cString);
-			
-			if((0 != ucTokenNr) || (asToken[0].eType == KEYWORD)) {
+			if(eCompareString(cString, "callib")) {
 				
-				switch (asToken[0].uValue.eKeyword) {
+				ServoCallib();
+			} else if(eCompareString(cString, "left")) {
 				
-				case CAL:
-					
-					ServoCallib();
-				break;
-					
-				case GT:
+				ServoGoToInDegree(90);
+			} else if(eCompareString(cString, "right")) {
 				
-				ServoGoTo(asToken[1].uValue.uiNumber);
-				break;
-				
-				} 
+				ServoGoToInDegree(270);
 			}
 		}
 		

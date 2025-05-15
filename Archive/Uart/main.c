@@ -1,16 +1,15 @@
-#include "uart.h"
+#include "../Library/led.h"
 #include "../Library/keyboard.h"
 #include "../Library/timer_interrupts.h"
 #include "../library/servo.h"
-#include "string.h"
-#include "command_decoder.h"
+#include "uart.h"
 
-#define TERMINATOR '\0'
+extern char cOdebranyZnak;
 
 int main(){
 	
 	unsigned int iMainLoopCtr;
-	char cString[RECIEVER_SIZE];
+	unsigned int uiSerwoDegree = 0;
 	
 	KeyboardInit();
 	DetectorInit();
@@ -47,32 +46,43 @@ int main(){
 				
 			break;
 		
-			}
-		
-		if(eReciever_GetStatus() == READY) {
-			
-			Reciever_GetStringCopy(cString);
-			
-			DecodeMsg(cString);
-			
-			if((0 != ucTokenNr) || (asToken[0].eType == KEYWORD)) {
-				
-				switch (asToken[0].uValue.eKeyword) {
-				
-				case CAL:
-					
-					ServoCallib();
-				break;
-					
-				case GT:
-				
-				ServoGoTo(asToken[1].uValue.uiNumber);
-				break;
-				
-				} 
-			}
 		}
 		
+			switch(cOdebranyZnak) {
+		
+			case 'c':
+			
+				ServoCallib();
+			
+				cOdebranyZnak = 0; 
+			break;
+				
+			case '1':
+				
+				uiSerwoDegree = (int)(7.5 * (float)sServo.uiDesiredPosition);
+				
+				ServoGoToInDegree(uiSerwoDegree + 90);
+				cOdebranyZnak = 0; 
+			break;
+			
+			case '2':
+				
+				ServoGoToInDegree(180);
+				cOdebranyZnak = 0;
+			break;
+			
+			case '3':
+				
+				ServoGoToInDegree(270);
+				cOdebranyZnak = 0;
+			break;
+			
+			default:
+				
+				
+			break;
+		
+		}
 		
 		iMainLoopCtr++;
 	}

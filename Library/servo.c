@@ -89,8 +89,18 @@ void ServoCallib(void) {
 
 	sServo.eState = CALLIB;
 }
-
+/*
 void ServoGoTo(unsigned int uiPosition) {
 
 	sServo.uiDesiredPosition = uiPosition;
+}
+*/
+void ServoGoToInDegree(unsigned int uiDegree) {
+
+	sServo.uiDesiredPosition = (unsigned int)((float)uiDegree/(float)7.5);
+}
+
+void ServoGoTo(unsigned int uiPosition) {
+	
+	sServo.uiDesiredPosition = (unsigned int)((float)0.24 * (float)uiPosition);
 }

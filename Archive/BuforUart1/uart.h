@@ -1,8 +1,6 @@
 #ifndef UART_H
 #define UART_H
 
-#define RECIEVER_SIZE 12
-
 void UART_InitWithInt(unsigned int uiBaudRate);
 
 void Reciever_PutCharacterToBuffer(char cCharacter);

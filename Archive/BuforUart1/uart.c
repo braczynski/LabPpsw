@@ -26,6 +26,7 @@
 //PINSEL UART PINS
 #define UART_RxD_bm (1<<2)
 
+#define RECIEVER_SIZE 7
 #define NULL 0
 
 ////////////// Zmienne globalne ////////////

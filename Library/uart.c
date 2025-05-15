@@ -1,5 +1,4 @@
 #include <LPC210X.H>
-#include "uart.h"
 
 /************ UART ************/
 // U0LCR Line Control Register
@@ -23,20 +22,11 @@
 // VICVectCntlx Vector Control Registers
 #define mIRQ_SLOT_ENABLE	0x00000020
 
-//PINSEL UART PINS
 #define UART_RxD_bm (1<<2)
 
-#define NULL 0
-
 ////////////// Zmienne globalne ////////////
-
 char cOdebranyZnak;
 
-struct RecieverBuffer{ 
-	char cData[RECIEVER_SIZE];
-	unsigned char ucCharCtr;
-	enum eRecieverStatus eStatus;
-} sRecieverBuffer;
 
 ///////////////////////////////////////////
 __irq void UART0_Interrupt (void) {
@@ -46,16 +36,7 @@ __irq void UART0_Interrupt (void) {
 
    if      ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mRX_DATA_AVALIABLE_INTERRUPT_PENDING) // odebrano znak
    {
-			
-			cOdebranyZnak = U0RBR;
-		 
-			if('\r' == cOdebranyZnak) {
-				
-				Reciever_PutCharacterToBuffer(NULL);			
-			} else {
-				
-				Reciever_PutCharacterToBuffer(cOdebranyZnak);			
-			}
+      cOdebranyZnak = U0RBR;
    } 
    
    if ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mTHRE_INTERRUPT_PENDING)              // wyslano znak - nadajnik pusty 
@@ -67,46 +48,6 @@ __irq void UART0_Interrupt (void) {
 }
 
 ////////////////////////////////////////////
-
-void Reciever_PutCharacterToBuffer(char cCharacter) {
-	
-	if(sRecieverBuffer.ucCharCtr < RECIEVER_SIZE) {
-		if(cCharacter != NULL) {
-		
-			sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] = cCharacter;
-			sRecieverBuffer.ucCharCtr++;
-		} else {
-			
-			sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] = NULL;
-			sRecieverBuffer.eStatus = READY;
-			sRecieverBuffer.ucCharCtr = 0;
-		}
-		
-	} else {
-	
-		sRecieverBuffer.eStatus = OVERFLOW;
-	}
-}
-
-enum eRecieverStatus eReciever_GetStatus(void) {
-	
-	return sRecieverBuffer.eStatus;
-}
-
-void Reciever_GetStringCopy(char * ucDestination) {
-	
-	for(sRecieverBuffer.ucCharCtr = 0; sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] != NULL; sRecieverBuffer.ucCharCtr++)
-	{
-		
-		ucDestination[sRecieverBuffer.ucCharCtr] = sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr];
-	}
-	
-	ucDestination[sRecieverBuffer.ucCharCtr] = NULL;
-	sRecieverBuffer.eStatus = EMPTY;
-	sRecieverBuffer.ucCharCtr = 0;
-	
-}
-
 void UART_InitWithInt(unsigned int uiBaudRate){
 
    // UART0
