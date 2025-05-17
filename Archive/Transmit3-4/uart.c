@@ -25,12 +25,15 @@
 
 //PINSEL UART PINS
 #define UART_RxD_bm (1<<2)
+#define UART_TxD_bm (1<<0)
 
+#define TERMINATOR '\r'
 #define NULL 0
 
 ////////////// Zmienne globalne ////////////
 
 char cOdebranyZnak;
+unsigned char cWyslanyZnak;
 
 struct RecieverBuffer{ 
 	char cData[RECIEVER_SIZE];
@@ -38,6 +41,14 @@ struct RecieverBuffer{
 	enum eRecieverStatus eStatus;
 } sRecieverBuffer;
 
+struct TransmiterBuffer{
+	char cData[TRANSMITER_SIZE];
+	enum eTransmiterStatus eStatus;
+	unsigned char fLastCharacter;
+	unsigned char ucCharCtr;
+};
+
+struct TransmiterBuffer sTransmiterBuffer;
 ///////////////////////////////////////////
 __irq void UART0_Interrupt (void) {
    // jesli przerwanie z odbiornika (Rx)
@@ -60,7 +71,11 @@ __irq void UART0_Interrupt (void) {
    
    if ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mTHRE_INTERRUPT_PENDING)              // wyslano znak - nadajnik pusty 
    {
-      // narazie nic nie wysylamy
+			cWyslanyZnak = Transmiter_GetCharacterFromBuffer();
+			if(cWyslanyZnak != NULL) {
+				
+				U0THR = cWyslanyZnak;
+			}
    }
 
    VICVectAddr = 0; // Acknowledge Interrupt
@@ -107,14 +122,59 @@ void Reciever_GetStringCopy(char * ucDestination) {
 	
 }
 
+char Transmiter_GetCharacterFromBuffer() {
+	static char cTransmitChar;
+	
+	if((NULL != sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (0 == sTransmiterBuffer.fLastCharacter)) {
+		
+		cTransmitChar = sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr];
+		sTransmiterBuffer.ucCharCtr++;
+		return cTransmitChar;
+	} else if ((NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (0 == sTransmiterBuffer.fLastCharacter)){
+		
+		sTransmiterBuffer.fLastCharacter = 1; 
+		return TERMINATOR;
+	}	else if ((NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (1 == sTransmiterBuffer.fLastCharacter)){
+		
+		sTransmiterBuffer.ucCharCtr = 0;
+		sTransmiterBuffer.fLastCharacter = 0; 
+		sTransmiterBuffer.eStatus = FREE;
+		
+		return NULL;
+	}
+	
+	return NULL;
+}
+
+void Transmiter_SendString(unsigned char cString[]) {
+	
+	for(sTransmiterBuffer.ucCharCtr = 0; cString[sTransmiterBuffer.ucCharCtr] != NULL; sTransmiterBuffer.ucCharCtr++){
+		
+		sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = cString[sTransmiterBuffer.ucCharCtr];
+	}
+	
+	sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = NULL;
+
+	sTransmiterBuffer.eStatus = BUSY;
+	sTransmiterBuffer.fLastCharacter = 0;
+	sTransmiterBuffer.ucCharCtr = 1;
+	
+	U0THR = sTransmiterBuffer.cData[0];
+}
+
+enum eTransmiterStatus Transmiter_GetStatus(void) {
+
+	return sTransmiterBuffer.eStatus;
+}
+
 void UART_InitWithInt(unsigned int uiBaudRate){
 
    // UART0
-   PINSEL0 = PINSEL0 | UART_RxD_bm;                                     // ustawic pina na odbiornik uart0
+   PINSEL0 = PINSEL0 | UART_RxD_bm | UART_TxD_bm;                                     // ustawic pina na odbiornik uart0
    U0LCR  |= m8BIT_UART_WORD_LENGTH | mDIVISOR_LATCH_ACCES_BIT; // dlugosc slowa, DLAB = 1
    U0DLL   = ((15000000)/16)/uiBaudRate;                     // predkosc transmisji
    U0LCR  &= (~mDIVISOR_LATCH_ACCES_BIT);                       // DLAB = 0
-   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE;               // Wlacza przerwanie, gdy dane sa dostepne do odczytu
+   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE | mTHRE_INTERRUPT_ENABLE;               // Wlacza przerwanie, gdy dane sa dostepne do odczytu
 
    // INT
    VICVectAddr2  = (unsigned long) UART0_Interrupt;             // set interrupt service routine address

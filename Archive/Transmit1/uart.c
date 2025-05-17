@@ -27,7 +27,7 @@
 #define UART_RxD_bm (1<<2)
 #define UART_TxD_bm (1<<0)
 
-#define TERMINATOR '\r'
+#define TERMINATOR '\r';
 #define NULL 0
 
 ////////////// Zmienne globalne ////////////
@@ -46,9 +46,8 @@ struct TransmiterBuffer{
 	enum eTransmiterStatus eStatus;
 	unsigned char fLastCharacter;
 	unsigned char ucCharCtr;
-};
+} sTransmiterBuffer;
 
-struct TransmiterBuffer sTransmiterBuffer;
 ///////////////////////////////////////////
 __irq void UART0_Interrupt (void) {
    // jesli przerwanie z odbiornika (Rx)
@@ -71,11 +70,18 @@ __irq void UART0_Interrupt (void) {
    
    if ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mTHRE_INTERRUPT_PENDING)              // wyslano znak - nadajnik pusty 
    {
+		 /*
 			cWyslanyZnak = Transmiter_GetCharacterFromBuffer();
 			if(cWyslanyZnak != NULL) {
 				
-				U0THR = cWyslanyZnak;
+				U0THR = Transmiter_GetCharacterFromBuffer();
+			} else {
+				
+				Transmiter_GetCharacterFromBuffer();
 			}
+		 */
+		 cWyslanyZnak++;
+		 U0THR = cWyslanyZnak;
    }
 
    VICVectAddr = 0; // Acknowledge Interrupt
@@ -134,7 +140,7 @@ char Transmiter_GetCharacterFromBuffer() {
 		
 		sTransmiterBuffer.fLastCharacter = 1; 
 		return TERMINATOR;
-	}	else if ((NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (1 == sTransmiterBuffer.fLastCharacter)){
+	}	else {
 		
 		sTransmiterBuffer.ucCharCtr = 0;
 		sTransmiterBuffer.fLastCharacter = 0; 
@@ -142,8 +148,6 @@ char Transmiter_GetCharacterFromBuffer() {
 		
 		return NULL;
 	}
-	
-	return NULL;
 }
 
 void Transmiter_SendString(unsigned char cString[]) {
@@ -153,13 +157,13 @@ void Transmiter_SendString(unsigned char cString[]) {
 		sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = cString[sTransmiterBuffer.ucCharCtr];
 	}
 	
-	sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = NULL;
+	sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = cString[sTransmiterBuffer.ucCharCtr];
+	
+	U0THR = sTransmiterBuffer.cData[0];
 
 	sTransmiterBuffer.eStatus = BUSY;
 	sTransmiterBuffer.fLastCharacter = 0;
 	sTransmiterBuffer.ucCharCtr = 1;
-	
-	U0THR = sTransmiterBuffer.cData[0];
 }
 
 enum eTransmiterStatus Transmiter_GetStatus(void) {

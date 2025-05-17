@@ -2,7 +2,7 @@
 #define UART_H
 
 #define RECIEVER_SIZE 12
-#define TRANSMITER_SIZE 22
+#define TRANSMITER_SIZE 16
 
 void UART_InitWithInt(unsigned int uiBaudRate);
 
