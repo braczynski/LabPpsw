@@ -13,8 +13,6 @@ struct Servo
 	enum ServoState eState; 
 	unsigned int uiCurrentPosition; 
 	unsigned int uiDesiredPosition;
-	unsigned int uiWaitCounter;
-	unsigned int uiWaitTime;
 	
 };
 
@@ -104,8 +102,7 @@ void ServoInit(unsigned int uiServoFrequency) {
 	
 	float fServoTime = 0;
 	
-	sServo.uiWaitCounter = 0;
-	
+	DetectorInit();
 	LedInit();
 	
 	fServoTime = (1/(float)uiServoFrequency); // w s

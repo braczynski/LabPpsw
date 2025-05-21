@@ -1,5 +1,6 @@
 #include <LPC210X.H>
 #include "uart.h"
+#include "string.h"
 
 /************ UART ************/
 // U0LCR Line Control Register
@@ -85,22 +86,16 @@ __irq void UART0_Interrupt (void) {
 
 void Reciever_PutCharacterToBuffer(char cCharacter) {
 	
-	if(sRecieverBuffer.ucCharCtr < RECIEVER_SIZE) {
-		if(cCharacter != NULL) {
-		
-			sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] = cCharacter;
-			sRecieverBuffer.ucCharCtr++;
-		} else {
-			
+	if(sRecieverBuffer.ucCharCtr == RECIEVER_SIZE) {
+		sRecieverBuffer.eStatus = OVERFLOW;
+	} else if(cCharacter == NULL) {
 			sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] = NULL;
 			sRecieverBuffer.eStatus = READY;
-			sRecieverBuffer.ucCharCtr = 0;
+			sRecieverBuffer.ucCharCtr = 0;		
+		} else {
+			sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] = cCharacter;
+			sRecieverBuffer.ucCharCtr++;			
 		}
-		
-	} else {
-	
-		sRecieverBuffer.eStatus = OVERFLOW;
-	}
 }
 
 enum eRecieverStatus eReciever_GetStatus(void) {
@@ -110,13 +105,8 @@ enum eRecieverStatus eReciever_GetStatus(void) {
 
 void Reciever_GetStringCopy(char * ucDestination) {
 	
-	for(sRecieverBuffer.ucCharCtr = 0; sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr] != NULL; sRecieverBuffer.ucCharCtr++)
-	{
-		
-		ucDestination[sRecieverBuffer.ucCharCtr] = sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr];
-	}
+	CopyString(sRecieverBuffer.cData, ucDestination);
 	
-	ucDestination[sRecieverBuffer.ucCharCtr] = NULL;
 	sRecieverBuffer.eStatus = EMPTY;
 	sRecieverBuffer.ucCharCtr = 0;
 	
@@ -125,35 +115,24 @@ void Reciever_GetStringCopy(char * ucDestination) {
 char Transmiter_GetCharacterFromBuffer() {
 	static char cTransmitChar;
 	
-	if((NULL != sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (0 == sTransmiterBuffer.fLastCharacter)) {
-		
+	if(NULL != sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) {
 		cTransmitChar = sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr];
 		sTransmiterBuffer.ucCharCtr++;
 		return cTransmitChar;
-	} else if ((NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (0 == sTransmiterBuffer.fLastCharacter)){
-		
+	} else if (0 == sTransmiterBuffer.fLastCharacter){
 		sTransmiterBuffer.fLastCharacter = 1; 
 		return TERMINATOR;
-	}	else if ((NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) && (1 == sTransmiterBuffer.fLastCharacter)){
-		
+	} else {
 		sTransmiterBuffer.ucCharCtr = 0;
-		sTransmiterBuffer.fLastCharacter = 0; 
+		sTransmiterBuffer.fLastCharacter = 0;
 		sTransmiterBuffer.eStatus = FREE;
-		
 		return NULL;
 	}
-	
-	return NULL;
 }
 
 void Transmiter_SendString(unsigned char cString[]) {
 	
-	for(sTransmiterBuffer.ucCharCtr = 0; cString[sTransmiterBuffer.ucCharCtr] != NULL; sTransmiterBuffer.ucCharCtr++){
-		
-		sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = cString[sTransmiterBuffer.ucCharCtr];
-	}
-	
-	sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr] = NULL;
+	CopyString((char *)cString, sTransmiterBuffer.cData);
 
 	sTransmiterBuffer.eStatus = BUSY;
 	sTransmiterBuffer.fLastCharacter = 0;
