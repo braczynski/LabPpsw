@@ -32,7 +32,11 @@ int main(){
 	unsigned int iMainLoopCtr;
 	unsigned char ucSecString[TRANSMITER_SIZE] = "sec ";
 	unsigned char ucMinString[TRANSMITER_SIZE] = "min ";
+	unsigned char ucUnknownCommand[TRANSMITER_SIZE] = "UnknownCommand";
+	unsigned char ucId[TRANSMITER_SIZE];
 	unsigned char fCalcActived = 0;
+	unsigned char fUnknownCommand = 0;
+	unsigned char fId = 0;
 	unsigned int uiCalcValue;
 	char cCalc[RECIEVER_SIZE];
 	
@@ -49,18 +53,30 @@ int main(){
 			
 			DecodeMsg(cCalc);
 			
-			if((0 != ucTokenNr) || (asToken[0].eType == KEYWORD)) {
+			if((0 != ucTokenNr) && (asToken[0].eType == KEYWORD)) {
 				
 				if(asToken[0].uValue.eKeyword == CALC) {
 
 					fCalcActived = 1; 
-				}
+				} else if (asToken[0].uValue.eKeyword == ID) {
+
+					fId = 1;
+			}
+			} else {
+							fUnknownCommand = 1;
 			}
 		}
 		
 		if(Transmiter_GetStatus() == FREE) {
 			
-			if(fCalcActived == 1) {
+			if(fId == 1) {
+
+				fId = 0;
+					
+				AppendString("WATCH", (char *)ucId);
+				
+				Transmiter_SendString(ucId);
+			} else if (fCalcActived == 1) {
 				
 				cCalc[4] = ' ';
 				cCalc[5] = NULL;
@@ -73,7 +89,11 @@ int main(){
 				
 				fCalcActived = 0;
 				
-			} else if(sWatch.fMinutesValueChanged == 1) {
+			} else if (fUnknownCommand == 1) {
+				
+				fUnknownCommand = 0;
+				Transmiter_SendString(ucUnknownCommand);
+			}else if(sWatch.fMinutesValueChanged == 1) {
 
 				sWatch.ucMinutes++;
 				sWatch.fMinutesValueChanged=0;
@@ -98,6 +118,7 @@ int main(){
 		
 		ucSecString[4] = NULL;
 		ucMinString[4] = NULL;
+		ucId[0] = NULL;
 		iMainLoopCtr++;
 	}
 }

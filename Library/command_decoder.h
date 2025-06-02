@@ -3,12 +3,12 @@
 
 #define MAX_TOKEN_NR 2
 #define MAX_KEYWORD_STRING_LTH 10
-#define MAX_KEYWORD_NR 3
+#define MAX_KEYWORD_NR 4
 #define DELIMITER_CHARACTER ' '
 
 typedef enum TokenType {KEYWORD, NUMBER, STRING} TokenType;
 
-typedef enum KeywordCode {GT, CAL, CALC} KeywordCode;
+typedef enum KeywordCode {GT, CAL, CALC, ID} KeywordCode;
 
 typedef union TokenValue
 {

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\trasmit.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\trasmit.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 21 17:48:14 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Mon Jun 02 17:27:38 2025
 <BR><P>
-<H3>Maximum Stack Usage =        112 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        160 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; DecodeMsg &rArr; DecodeTokens &rArr; eStringToKeyword
 <P>
@@ -187,8 +187,8 @@ Global Symbols
 <P><STRONG><a name="[1f]"></a>WatchUpdate</STRONG> (ARM, 48 bytes, Stack size 0 bytes, main.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 412 bytes, Stack size 64 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112 + Unknown Stack Size
+<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 532 bytes, Stack size 112 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = main &rArr; DecodeMsg &rArr; DecodeTokens &rArr; eStringToKeyword
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
@@ -201,12 +201,12 @@ Global Symbols
 <LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyboardInit
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectorInit
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DecodeMsg
-<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendUIntToString
-<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendString
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendUIntToString
+<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendString
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL>
-<P><STRONG><a name="[2a]"></a>Transmiter_GetCharacterFromBuffer</STRONG> (ARM, 140 bytes, Stack size 0 bytes, uart.o(.text))
+<P><STRONG><a name="[2a]"></a>Transmiter_GetCharacterFromBuffer</STRONG> (ARM, 136 bytes, Stack size 0 bytes, uart.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_Interrupt
 </UL>
 
@@ -268,14 +268,14 @@ Global Symbols
 <P><STRONG><a name="[2b]"></a>CopyString</STRONG> (ARM, 52 bytes, Stack size 0 bytes, string.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Transmiter_SendString
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reciever_GetStringCopy
-<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendString
+<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendString
 </UL>
 
 <P><STRONG><a name="[3d]"></a>eCompareString</STRONG> (ARM, 80 bytes, Stack size 0 bytes, string.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eStringToKeyword
 </UL>
 
-<P><STRONG><a name="[27]"></a>AppendString</STRONG> (ARM, 60 bytes, Stack size 16 bytes, string.o(.text))
+<P><STRONG><a name="[25]"></a>AppendString</STRONG> (ARM, 60 bytes, Stack size 16 bytes, string.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = AppendString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CopyString
@@ -290,7 +290,7 @@ Global Symbols
 <P><STRONG><a name="[2e]"></a>UIntToHexStr</STRONG> (ARM, 112 bytes, Stack size 4 bytes, string.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = UIntToHexStr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendUIntToString
+<BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AppendUIntToString
 </UL>
 
 <P><STRONG><a name="[3f]"></a>eHexStringToUInt</STRONG> (ARM, 212 bytes, Stack size 4 bytes, string.o(.text))
@@ -299,7 +299,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DecodeTokens
 </UL>
 
-<P><STRONG><a name="[25]"></a>AppendUIntToString</STRONG> (ARM, 60 bytes, Stack size 16 bytes, string.o(.text))
+<P><STRONG><a name="[27]"></a>AppendUIntToString</STRONG> (ARM, 60 bytes, Stack size 16 bytes, string.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = AppendUIntToString &rArr; UIntToHexStr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIntToHexStr
@@ -308,7 +308,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1d]"></a>DetectorInit</STRONG> (ARM, 24 bytes, Stack size 0 bytes, servo.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[30]"></a>eReadDetector</STRONG> (ARM, 32 bytes, Stack size 0 bytes, servo.o(.text))
@@ -328,7 +329,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 </UL>
 
-<P><STRONG><a name="[33]"></a>ServoInit</STRONG> (ARM, 104 bytes, Stack size 16 bytes, servo.o(.text), UNUSED)
+<P><STRONG><a name="[33]"></a>ServoInit</STRONG> (ARM, 96 bytes, Stack size 16 bytes, servo.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
@@ -336,6 +337,7 @@ Global Symbols
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedInit
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
 <LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0Interrupts_Init
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectorInit
 </UL>
 
 <P><STRONG><a name="[71]"></a>ServoGoTo</STRONG> (ARM, 44 bytes, Stack size 0 bytes, servo.o(.text), UNUSED)

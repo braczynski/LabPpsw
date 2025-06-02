@@ -115,18 +115,18 @@ void Reciever_GetStringCopy(char * ucDestination) {
 char Transmiter_GetCharacterFromBuffer() {
 	static char cTransmitChar;
 	
-	if(NULL != sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) {
-		cTransmitChar = sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr];
-		sTransmiterBuffer.ucCharCtr++;
-		return cTransmitChar;
-	} else if (0 == sTransmiterBuffer.fLastCharacter){
-		sTransmiterBuffer.fLastCharacter = 1; 
-		return TERMINATOR;
-	} else {
+	if(1 == sTransmiterBuffer.fLastCharacter) {
 		sTransmiterBuffer.ucCharCtr = 0;
 		sTransmiterBuffer.fLastCharacter = 0;
 		sTransmiterBuffer.eStatus = FREE;
 		return NULL;
+	} else if (NULL == sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr]) {
+		sTransmiterBuffer.fLastCharacter = 1; 
+		return TERMINATOR;
+	} else {
+		cTransmitChar = sTransmiterBuffer.cData[sTransmiterBuffer.ucCharCtr];
+		sTransmiterBuffer.ucCharCtr++;
+		return cTransmitChar;
 	}
 }
 
