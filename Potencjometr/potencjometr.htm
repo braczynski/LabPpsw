@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\potencjometr.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\potencjometr.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 21 23:22:15 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Mon Jun 02 17:39:07 2025
 <BR><P>
 <H3>Maximum Stack Usage =         32 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -183,17 +183,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 160 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 156 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; ServoInit &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eKeyboardRead
-<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoGoTo
-<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
-<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyboardInit
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Start
+<BR>[Calls]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eKeyboardRead
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoGoTo
+<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyboardInit
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Start
 <LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
 </UL>
@@ -202,15 +202,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> adc.o(.text)
 </UL>
-<P><STRONG><a name="[1b]"></a>ADC_Init</STRONG> (ARM, 64 bytes, Stack size 0 bytes, adc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[22]"></a>ADC_Start</STRONG> (ARM, 24 bytes, Stack size 0 bytes, adc.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1c]"></a>ADC_Start</STRONG> (ARM, 24 bytes, Stack size 0 bytes, adc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[1b]"></a>ADC_Init</STRONG> (ARM, 76 bytes, Stack size 4 bytes, adc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ADC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Start
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[22]"></a>ADCServoValue</STRONG> (ARM, 52 bytes, Stack size 16 bytes, adc.o(.text))
+<P><STRONG><a name="[21]"></a>ADCServoValue</STRONG> (ARM, 52 bytes, Stack size 16 bytes, adc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ADCServoValue &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -220,16 +225,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1d]"></a>KeyboardInit</STRONG> (ARM, 24 bytes, Stack size 0 bytes, keyboard.o(.text))
+<P><STRONG><a name="[1c]"></a>KeyboardInit</STRONG> (ARM, 24 bytes, Stack size 0 bytes, keyboard.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1f]"></a>eKeyboardRead</STRONG> (ARM, 104 bytes, Stack size 0 bytes, keyboard.o(.text))
+<P><STRONG><a name="[1e]"></a>eKeyboardRead</STRONG> (ARM, 104 bytes, Stack size 0 bytes, keyboard.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[2e]"></a>LedInit</STRONG> (ARM, 24 bytes, Stack size 0 bytes, led.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 </UL>
 
 <P><STRONG><a name="[28]"></a>LedOn</STRONG> (ARM, 136 bytes, Stack size 0 bytes, led.o(.text))
@@ -262,7 +267,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2d]"></a>DetectorInit</STRONG> (ARM, 24 bytes, Stack size 0 bytes, servo.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 </UL>
 
 <P><STRONG><a name="[2c]"></a>eReadDetector</STRONG> (ARM, 32 bytes, Stack size 0 bytes, servo.o(.text))
@@ -278,12 +283,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> servo.o(.text)
 </UL>
-<P><STRONG><a name="[20]"></a>ServoCallib</STRONG> (ARM, 36 bytes, Stack size 0 bytes, servo.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<P><STRONG><a name="[1f]"></a>ServoCallib</STRONG> (ARM, 36 bytes, Stack size 0 bytes, servo.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1e]"></a>ServoInit</STRONG> (ARM, 96 bytes, Stack size 16 bytes, servo.o(.text))
+<P><STRONG><a name="[1d]"></a>ServoInit</STRONG> (ARM, 96 bytes, Stack size 16 bytes, servo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ServoInit &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -293,12 +298,12 @@ Global Symbols
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0Interrupts_Init
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectorInit
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedInit
-<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
+<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[21]"></a>ServoGoTo</STRONG> (ARM, 44 bytes, Stack size 0 bytes, servo.o(.text))
+<P><STRONG><a name="[20]"></a>ServoGoTo</STRONG> (ARM, 44 bytes, Stack size 0 bytes, servo.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -308,7 +313,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> timer_interrupts.o(.text)
 </UL>
 <P><STRONG><a name="[30]"></a>Timer0Interrupts_Init</STRONG> (ARM, 92 bytes, Stack size 0 bytes, timer_interrupts.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 </UL>
 
 <P><STRONG><a name="[5d]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -353,7 +358,7 @@ Global Symbols
 <P><STRONG><a name="[2f]"></a>__aeabi_fdiv</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fdiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 </UL>
 
 <P><STRONG><a name="[64]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size 16 bytes, indicate_semi.o(.text), UNUSED)
@@ -366,8 +371,8 @@ Global Symbols
 <P><STRONG><a name="[26]"></a>__aeabi_f2uiz</STRONG> (ARM, 0 bytes, Stack size 16 bytes, ffixu.o(x$fpl$ffixu))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
+<BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
 </UL>
 
 <P><STRONG><a name="[39]"></a>_ffixu</STRONG> (ARM, 84 bytes, Stack size 16 bytes, ffixu.o(x$fpl$ffixu), UNUSED)
@@ -383,8 +388,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[24]"></a>__aeabi_ui2f</STRONG> (ARM, 0 bytes, Stack size 0 bytes, fflt_noclz.o(x$fpl$ffltu))
-<BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
 </UL>
 
 <P><STRONG><a name="[3a]"></a>_ffltu</STRONG> (ARM, 8 bytes, Stack size 0 bytes, fflt_noclz.o(x$fpl$ffltu), UNUSED)
@@ -394,8 +399,8 @@ Global Symbols
 <P><STRONG><a name="[25]"></a>__aeabi_fmul</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
+<BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCServoValue
 </UL>
 
 <P><STRONG><a name="[3c]"></a>_fmul</STRONG> (ARM, 256 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul), UNUSED)

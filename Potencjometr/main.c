@@ -6,7 +6,6 @@ int main(){
 	unsigned int iMainLoopCtr;
 	
 	ADC_Init();
-	ADC_Start();
 	
 	KeyboardInit();
 	ServoInit(50);
