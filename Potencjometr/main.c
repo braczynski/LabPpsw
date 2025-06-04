@@ -8,7 +8,7 @@ int main(){
 	ADC_Init();
 	
 	KeyboardInit();
-	ServoInit(50);
+	ServoInit(200);
 	
 	while(1) {
 		

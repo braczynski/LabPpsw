@@ -1,36 +1,36 @@
 Dependencies for Project 'potencjometr', Target 'Target 1': (DO NOT MODIFY !)
-F (.\Startup.s)(0x683DB709)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
-F (.\main.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (C:\Users\student\LabPpsw\Potencjometr\adc.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\servo.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\Keyboard.h)(0x683DB709)
-F (.\adc.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
+F (.\Startup.s)(0x684048DE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\main.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (C:\Users\student\LabPpsw\Potencjometr\adc.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\servo.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\Keyboard.h)(0x684048DE)
+F (.\adc.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Potencjometr\adc.h)(0x683DB709)
-F (..\Library\keyboard.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\keyboard.o --omf_browse .\keyboard.crf --depend .\keyboard.d)
+I (C:\Users\student\LabPpsw\Potencjometr\adc.h)(0x684048DE)
+F (..\Library\keyboard.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\keyboard.o --omf_browse .\keyboard.crf --depend .\keyboard.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\keyboard.h)(0x683DB709)
-F (..\Library\command_decoder.c)(0x683DBE32)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\command_decoder.o --omf_browse .\command_decoder.crf --depend .\command_decoder.d)
-I (C:\Users\student\LabPpsw\Library\string.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\command_decoder.h)(0x683DBE32)
-F (..\Library\led.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\led.o --omf_browse .\led.crf --depend .\led.d)
+I (C:\Users\student\LabPpsw\Library\keyboard.h)(0x684048DE)
+F (..\Library\command_decoder.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\command_decoder.o --omf_browse .\command_decoder.crf --depend .\command_decoder.d)
+I (C:\Users\student\LabPpsw\Library\string.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\command_decoder.h)(0x684048DE)
+F (..\Library\led.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\led.o --omf_browse .\led.crf --depend .\led.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\led.h)(0x683DB709)
-F (..\Library\servo.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\servo.o --omf_browse .\servo.crf --depend .\servo.d)
+I (C:\Users\student\LabPpsw\Library\led.h)(0x684048DE)
+F (..\Library\servo.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\servo.o --omf_browse .\servo.crf --depend .\servo.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\led.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\timer_interrupts.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\servo.h)(0x683DB709)
-F (..\Library\string.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\string.o --omf_browse .\string.crf --depend .\string.d)
-I (C:\Users\student\LabPpsw\Library\string.h)(0x683DB709)
-F (..\Library\timer.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\timer.o --omf_browse .\timer.crf --depend .\timer.d)
+I (C:\Users\student\LabPpsw\Library\led.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\timer_interrupts.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\servo.h)(0x684048DE)
+F (..\Library\string.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\string.o --omf_browse .\string.crf --depend .\string.d)
+I (C:\Users\student\LabPpsw\Library\string.h)(0x684048DE)
+F (..\Library\timer.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\timer.o --omf_browse .\timer.crf --depend .\timer.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\timer.h)(0x683DB709)
-F (..\Library\timer_interrupts.c)(0x683DB709)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\timer_interrupts.o --omf_browse .\timer_interrupts.crf --depend .\timer_interrupts.d)
+I (C:\Users\student\LabPpsw\Library\timer.h)(0x684048DE)
+F (..\Library\timer_interrupts.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\timer_interrupts.o --omf_browse .\timer_interrupts.crf --depend .\timer_interrupts.d)
 I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\led.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\timer_interrupts.h)(0x683DB709)
-F (..\Library\uart.c)(0x683DB9D8)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+I (C:\Users\student\LabPpsw\Library\led.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\timer_interrupts.h)(0x684048DE)
+F (..\Library\uart.c)(0x684048DE)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
 I (C:\Keil\ARM\Inc\Philips\LPC210X.H)(0x51C80D9C)
-I (C:\Users\student\LabPpsw\Library\uart.h)(0x683DB709)
-I (C:\Users\student\LabPpsw\Library\string.h)(0x683DB709)
+I (C:\Users\student\LabPpsw\Library\uart.h)(0x684048DE)
+I (C:\Users\student\LabPpsw\Library\string.h)(0x684048DE)
