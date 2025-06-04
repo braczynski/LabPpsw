@@ -1,9 +1,0 @@
-.\main.o: main.c
-.\main.o: C:\Keil\ARM\Inc\Philips\LPC21xx.H
-.\main.o: ../library/uart.h
-.\main.o: ../Library/keyboard.h
-.\main.o: ../Library/timer_interrupts.h
-.\main.o: ../library/servo.h
-.\main.o: ../library/string.h
-.\main.o: ../library/command_decoder.h
-.\main.o: ../library/timer.h
